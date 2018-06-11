@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-06 23:27:16
+ * @Last Modified time: 2018-06-11 21:08:56
  */
 
 import './index.less';
@@ -20,7 +20,7 @@ $(function() {
             
             Toolkit.adminLogin(data => {
                 this.Listview = new Listview({
-                    url: '/Message/getMessages',
+                    url: '/Message/getMessagesByAdmin',
                 })
                 this.Listview.on('success', res => {
                     const htmlStr = Template('tpl', res);

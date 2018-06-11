@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-08 18:35:03
+ * @Last Modified time: 2018-06-11 21:08:33
  */
 
 import './index.less';
@@ -49,14 +49,14 @@ $(function () {
                         title: '已完成',
                         url: '/Work/getWorks',
                         querys: {
-                            work_status: this.workTypes[3]
+                            work_status: this.workTypes[4]
                         }
                     },
                     {
                         title: '延期转单',
                         url: '/Work/getWorks',
                         querys: {
-                            work_status: this.workTypes[4]
+                            work_status: this.workTypes[3]
                         }
                     }
                 ]
