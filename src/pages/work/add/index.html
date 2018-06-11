@@ -29,7 +29,7 @@
         <div class="title">拍摄照片（最多三张）</div>
         <div class="imgs">
           <div class="imgs-box"></div>                   
-          <div class="img upload"><div class="icon-upload"></div><input id="uploadBtn" type="file" name="postedFile"/></div>
+          <div class="img upload"><div class="icon-upload"></div><input id="uploadBtn" type="file" capture="camera" accept="image/*" name="postedFile"/></div>
         </div>
       </div>
       <div class="two">
@@ -110,7 +110,7 @@
     </div>
     
   </div>
-  <script type="text/javascript" src="//admin.nextdog.cc/Projects/WuYe/dist/libs/jquery.uploadifive.min.js"></script>
+  <script type="text/javascript" src="//admin.nextdog.cc/Projects/WuYe/dist/libs/uploadify/jquery.uploadifive.min.js"></script>
   <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
 </body>
 </html>

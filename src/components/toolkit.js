@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-08 23:22:40
+ * @Last Modified time: 2018-06-11 21:48:07
  */
 
 /**
@@ -130,7 +130,36 @@ const Toolkit = (function () {
         removeCompleted: true,
         fileSizeLimit: '20240KB',
         buttonClass: 'upload-components',
+        fileType: 'image/*',
         uploadScript: 'http://admin.nextdog.cc/Projects/weiLuoXuan/index.php/home/attachment/upload',
+        buttonText: '',
+        onUploadComplete: (file, res, response) => {
+          res = $.parseJSON(res);
+          res.data = res.rows;
+          if (res.success) {
+            res.data.attach_path = 'http://admin.nextdog.cc' + res.data.attach_path;
+          }
+          cb && cb(res);
+        }
+      })
+    },
+    /**
+     * 上传初始化
+     * @param {*} obj 
+     * @param {*} cb 
+     * @param {*} key 
+     * @param {*} type 
+     */
+    uploadify(obj, cb, key = 'property', type = 'source') {
+      $("#" + obj).uploadify({
+        formData: { relation_key: key, relation_type: type },
+        fileObjName: 'postedFile',
+        removeCompleted: true,
+        fileSizeLimit: '20240KB',
+        buttonClass: 'upload-components',
+        swf: '//admin.nextdog.cc/Projects/WuYe/dist/libs/uploadify/uploadify.swf',
+        fileType: 'image/*',
+        uploader: 'http://admin.nextdog.cc/Projects/weiLuoXuan/index.php/home/attachment/upload',
         buttonText: '',
         onUploadComplete: (file, res, response) => {
           res = $.parseJSON(res);
