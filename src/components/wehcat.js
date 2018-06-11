@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-08 23:49:17
+ * @Last Modified time: 2018-06-11 22:24:59
  */
 
 /**
@@ -33,7 +33,7 @@ const Wechat = (function () {
                             jsApiList: [
                                 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone',
                                 'startRecord', 'stopRecord', 'onVoiceRecordEnd', 'playVoice', 'stopVoice', 'uploadVoice', 'downloadVoice',
-                                'previewImage',
+                                'previewImage', 'chooseImage', 'uploadImage',
                                 'getLocation'
                             ] // 必填，需要使用的JS接口列表
                         });
@@ -66,6 +66,27 @@ const Wechat = (function () {
                 current: current, // 当前显示图片的http链接
                 urls: urls // 需要预览的图片http链接列表
             });
+        },
+        chooseImage(cb) {
+            wx.chooseImage({
+                count: 1, // 默认9
+                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function (res) {
+                    cb && cb(res.localIds);
+                }
+            });
+        },
+        uploadImage(cb) {
+            this.chooseImage(localIds => {
+                wx.uploadImage({
+                    localId: localIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res) {
+                        cb && cb(res.serverId);
+                    }
+                });
+            })
         },
         startRecord(cb) {
             wx.startRecord();

@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-09 23:52:23
+ * @Last Modified time: 2018-06-11 22:34:58
  */
 
 import './index.less';
@@ -64,11 +64,34 @@ $(function () {
         }
         event() {
             // 初始化上传
-            Toolkit.uploadInit('uploadBtn', res => {
-                if (res.success) {
-                    this.uploadSuccess(res.data);
-                }
-            }, 'property', 'work');
+            // Toolkit.uploadInit('uploadBtn', res => {
+            //     if (res.success) {
+            //         this.uploadSuccess(res.data);
+            //     }
+            // }, 'property', 'work');
+
+            // const u = navigator.userAgent;
+            // const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+            // window.setTimeout(() => {
+            //     if (isAndroid) {
+            //         $("#uploadifive-uploadBtn").find("input[type='file']").attr("accept","image/*");
+            //         //$("#uploadifive-uploadBtn").find("input[type='file']").attr("capture","camera");
+            //     }
+            $('.upload').on('click', () => {
+                Wechat.uploadImage(serverId => {
+                    Toolkit.fetch({
+                        url: '/Work/uploadImg',
+                        data: {
+                            img_id: serverId
+                        },
+                        success: res => {
+                            if (res.success) {
+                                this.uploadSuccess(res.data);
+                            }
+                        }
+                    })
+                })
+            })
 
             // 点击上传点图片删除
             $('.imgs-box').on('click', '.img', (e) => {
