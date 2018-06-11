@@ -1,0 +1,14 @@
+{
+  "name": "loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.0.0/loader.js",
+  "browser": {
+    "winston": false
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zcc",
+  "license": "ISC"
+}

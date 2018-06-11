@@ -1,0 +1,43 @@
+@import '../../../common/css/_var.less';
+
+#app {
+  position: relative;
+  height: 100%;
+
+  .address-list {
+    margin-top: @g;
+    padding: 0;
+    background-color: #fff;
+
+    .address-list-item {
+      box-sizing: border-box;
+      display: block;
+      padding: @g;
+      height: 115/@rem;
+      .line-b(1);
+      color: @black;
+      text-decoration: none;
+    }
+  }
+
+  .address-list-item {
+    position: relative;
+
+    .list-item-title {
+      margin-bottom: @g;
+    }
+
+    .list-item-desc {
+      width: 650/@rem;
+      .text-line();
+    }
+
+    .list-item-enter {
+      .pr(40,20);
+      font-size: @fz-max;
+    }
+  }
+}
+
+
+

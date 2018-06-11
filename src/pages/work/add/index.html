@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('html-loader!../../../common/layout/_header.html') %>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <title></title>
+  <% if (htmlWebpackPlugin.files.css.length) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+  <% } %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+  <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <script type="text/javascript" src="http://map.qq.com/api/js?v=2.exp"></script>   
+</head>
+<body>
+  <div id="app">
+		<div class="header">
+      <div class="headimg"></div>
+      <div class="nickname"></div>
+      <div class="mobile"></div>
+      <a href="../../user/center/index.html" class="userinfo">完善联系方式</a>
+      <a href="../../address/list/index.html" class="home"><div class="icon-mybaoxiu"></div></a>
+    </div>
+    <h1>填写报修卡</h1>
+    <div class="main">
+      <div class="one">
+        <div class="title">拍摄照片（最多三张）</div>
+        <div class="imgs">
+          <div class="imgs-box"></div>                   
+          <div class="img upload"><div class="icon-upload"></div><input id="uploadBtn" type="file" name="postedFile"/></div>
+        </div>
+      </div>
+      <div class="two">
+        <div class="body two-one">
+          <div class="title">报修大类</div>
+        <div id="select1" class="select">
+          <div class="select-name">请选择</div>
+          <div class="icon-down"></div>
+        </div>
+        </div>
+        <div class="body two-two">
+          <div class="title">报修小类</div>
+        <div id="select2" class="select">
+          <div class="select-name">请选择</div>
+          <div class="icon-down"></div>
+        </div>
+        </div>
+      </div>
+      <div class="three">
+        <div class="title">地址</div>
+        <div id="select3" class="select">
+          <div class="select-name">请选择所在地址</div>
+          <div class="icon-down"></div>
+        </div>
+      </div>
+      <div class="four">
+        <div class="title">语音留言</div>
+        <div id="luyin" class="luyin"><div class="icon-luyin1"></div><div class="label">请点击说话</div></div>
+        <div id="yuyin" class="yuyin"><div class="icon-yuyin"></div><div class="label time">0</div><div class="label">''</div></div>
+      </div>
+      <div class="five">
+        <div class="title">文字备注</div>
+        <textarea id="beizhu" class="beizhu" rows="5"></textarea>
+      </div>
+      <div id="submitBtn" class="btn btn-default">提交</div>
+    </div>
+  </div>
+  <div id="night">
+    <div class="overlay"></div>
+    <div class="body">
+      <div class="text">
+        晚上好，<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前时段系统回复较慢，若您有急事，可以直接拨打热线电话联系我们哦。
+      </div>
+      <a class="tel" href="tel:0571-87654321">0571-87654321</a>
+      <div class="moon"></div>
+    </div>
+  </div>
+  <div id="address">
+    <div id="input-3" class="input">
+      <div class="input-label">联系人：</div>
+      <div class="input-enter">
+        <input type="text" placeholder="请输入您的姓名">
+      </div>
+    </div>
+    <div id="input-4" class="input">
+      <div class="input-label">联系方式：</div>
+      <div class="input-enter">
+        <input type="tel" placeholder="请输入您的手机号">
+      </div>
+    </div>
+    <div id="input-1" class="input">
+      <div class="input-label">地址：</div>
+      <div class="input-enter">
+        <input itype="text" placeholder="请选择地址" value="" readonly>
+      </div>
+      <div class="input-right iconfont">&#xe6f8;</div>
+    </div>
+    <div id="input-2" class="input">
+      <div class="input-label">门牌号：</div>
+      <div class="input-enter">
+        <input type="text" placeholder="例：1号楼101室">
+      </div>
+    </div>
+    <div class="btn-group">
+        <button id="cancel" class="btn btn-danger">取消</button>
+        <button id="btn-save-addr" class="btn btn-default">保存</button>
+    </div>
+    
+  </div>
+  <script type="text/javascript" src="//admin.nextdog.cc/Projects/WuYe/dist/libs/jquery.uploadifive.min.js"></script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>

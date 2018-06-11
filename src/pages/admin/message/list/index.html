@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('html-loader!../../../../common/layout/_header.html') %>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <title>我的留言</title>
+  <% if (htmlWebpackPlugin.files.css.length) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+  <% } %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>  
+</head>
+<body>
+  <div id="app">
+    <div class="listview-components">
+      <ul class="msg-list"></ul>
+    </div>
+  </div>
+  <script id="tpl" type="text/html">
+    {{each data as item}}
+    <li>
+      <a href="../detail/index.html?id={{item.dialogue_id}}" class="msg-item">
+        {{if item.need_read === 'Y'}}
+        <div class="label">新的回复</div>
+        {{/if}}
+       <div class="time">{{item.create_time}}</div>
+       <div class="headimg" style="background-image:url('{{item.writer_img}}');"></div>
+       <div class="message">{{item.message_txt}}</div>
+      </a>
+    </li>
+    {{/each}}
+  </script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>

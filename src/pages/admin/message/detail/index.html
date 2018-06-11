@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('html-loader!../../../../common/layout/_header.html') %>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <title>我的留言</title>
+  <% if (htmlWebpackPlugin.files.css.length) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+  <% } %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>  
+</head>
+<body>
+  <div id="app">
+  </div>
+  <script id="tpl" type="text/html">
+    <div class="main">
+      <div class="head-list">
+      {{each data1 as item}}
+      <div class="msg-item">
+        <div class="time">{{item.create_time}}</div>
+        <div class="headimg" style="background-image:url('{{item.writer_img}}');"></div>
+        <div class="message">{{item.message_txt}}</div>
+      </div>
+      {{/each}}
+      </div>
+      <textarea id="replayTxt" rows="6" placeholder="请输入回复"></textarea>
+      <button id="btn" class="btn btn-default">提 交</button>
+    </div>
+    <div class="title">历史消息</div>
+    <div class="msg-list">
+      {{each data2 as item}}
+      <div class="msg-item">
+        <div class="username">{{item.writer_name}}：</div>
+        <div class="time">{{item.create_time}}</div>
+        <div class="headimg" style="background-image:url('{{item.writer_img}}');"></div>
+        <div class="message">{{item.message_txt}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "shake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.0.0/shake.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zsl",
+  "license": "ISC"
+}

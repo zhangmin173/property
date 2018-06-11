@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('html-loader!../../../../common/layout/_header.html') %>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <title></title>
+  <% if (htmlWebpackPlugin.files.css.length) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+  <% } %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>  
+</head>
+<body>
+  <div id="app">
+    <div class="tabs-components"></div>
+  </div>
+  <script id="tpl-work-1" type="text/html">
+    {{each data as item i}}
+    <li class="panel {{if item.work_status}}{{item.work_status}}{{/if}}">
+      <div class="top">
+        <div class="item user">
+          <div class="headimg" style="background-image:url('{{item.user_img}}')"></div>
+          <div class="name">{{item.work_user_name}}</div>
+          <div class="time">{{item.create_time}}</div>
+        </div>
+        <div class="item type">
+          <div class="type-label">{{item.work_type_1_name + '-' + item.work_type_2_name}}</div>
+        </div>
+        <div class="item">
+          <div class="icon icon-address"></div>
+          <div class="label address">{{item.work_address}}</div>
+        </div>
+        {{if item.work_voice}}
+        <div class="item">
+          <div class="icon icon-luyin"></div>
+          <div class="label yuyin" style="width:{{item.voice_time < 30 ? 30: item.voice_time}}%;" data-voice="{{item.work_voice_url}}">
+            <span class="icon icon-yuyin"></span>
+            <span class="num">{{item.voice_time}}</span>
+            <span class="uinit">''</span>
+          </div>
+        </div>
+        {{/if}}
+        {{if item.work_worker_note}}
+        <div class="item">
+          <div class="icon icon-beizhu"></div>
+          <div class="label beizhu">{{item.work_worker_note}}</div>
+        </div>
+        {{/if}}
+        {{if item.work_imgs && item.work_imgs.length}}
+        <div class="imgs">
+          {{each item.work_imgs as imgitem}}
+          <div class="img" style="background-image:url({{imgitem.img_url}})" data-url="{{imgitem.img_url}}"></div>
+          {{/each}}
+        </div>
+        {{/if}}
+        {{if item.work_status !== 'to_send'}}
+        <div class="other">
+          <div class="worker">
+            <div class="label">接单人</div>
+            <div class="name">{{item.work_worker_name}}</div>
+          </div>
+          <div class="mobile">
+            <div class="label">手机号</div>
+            <div class="name">{{item.work_worker_phone}}</div>
+          </div>
+          {{if item.work_delay_time}}
+          <div class="time">
+            <div class="label">预计完成时间</div>
+            <div class="name">{{item.work_delay_time}}</div>
+          </div>
+          {{/if}}
+          {{if item.work_over_time}}
+          <div class="time">
+            <div class="label">完成时间</div>
+            <div class="name">{{item.work_over_time}}</div>
+          </div>
+          {{/if}}
+          {{if item.work_worker_note}}
+          <div class="beizhu">
+            <div class="label">处理备注</div>
+            <div class="name">{{item.work_worker_note}}</div>
+          </div>
+          {{/if}}
+          </div>
+        </div>
+        {{/if}}
+        {{if item.work_status === 'to_deal'}}
+          <div class="ac jiedan" data-id="{{item.work_id}}" data-type="in_deal">
+            马上接单
+            <div class="icon-box"><div class="icon icon-jiedan"></div></div>
+          </div>
+        {{/if}}
+      </div>
+      {{if item.work_status === 'in_deal' || item.work_status === 'to_delay'}}
+        <div class="select-box">
+          <div class="select-item" data-type="1" data-id="{{item.work_id}}">延期转单</div>
+          <div class="select-item" data-type="2" data-id="{{item.work_id}}">处理完成</div>
+        </div>
+      {{/if}}
+      <div class="footer">
+        <textarea class="text" placeholder="文字备注">{{item.work_worker_note}}</textarea>
+        <div class="select">
+          <div class="select-name">预计完成时间</div>
+          <span class="date">请选择</span><div class="icon-down"></div>
+        </div>
+        <button class="btn btn-default">提交</button>
+      </div>
+    </li>
+    {{/each}}
+  </script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>

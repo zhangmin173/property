@@ -1,0 +1,191 @@
+// @import '../../common/css/_var.less';
+
+@rem: 200rem;
+@url: '//yun.dui88.com/h5-mami/layer/1.0/';
+
+.wd(@w,@h) {
+    width: @w/@rem;
+    height: @h/@rem;
+}
+
+.bg(@img) {
+    background-image: url('@{url}@{img}');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.pl(@top,@left) {
+    position: absolute;
+    left: @left/@rem;
+    top: @top/@rem;
+}
+.pr(@top,@right) {
+    position: absolute;
+    right: @right/@rem;
+    top: @top/@rem; 
+}
+.pc() {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+@sf: 1;
+.coin-num(@w, @left) {
+    display: inline-block;
+    .bg('layer-rmb.png');
+    width: @w * @sf/@rem;
+    height: 104 * @sf/@rem;
+    background-repeat: no-repeat;
+    background-position: -@left *@sf/@rem 0;
+}
+
+.layer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+
+    .layer-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .7);
+    }
+
+    .layer-close {
+        .pr(100,50);
+        .wd(50,50);
+        .bg('layer-close.png');
+        z-index: 10;
+    }
+
+    .layer-body {
+        position: relative;
+
+        .layer-decorate {
+            .pl(380,0);
+            left: 50%;
+            margin-left: -759/2/@rem;
+            .wd(759,607);
+            .bg('layer-decorate.png');
+        }
+
+        .layer-light {
+            .pl(100,0);
+            left: 50%;
+            margin-left: -688/2/@rem;
+            .wd(688,736);
+            .bg('layer-light.png');
+        }
+
+        .layer-main {
+            .pl(220,0);
+            left: 50%;
+            transform: translate(-50%);
+            .wd(586,758);
+            .bg('layer-bg.png');
+        }
+    }
+
+    .layer-main {
+
+        .layer-headimg {
+            .pc();
+            top: -106/2/@rem;
+            .wd(106,106);
+            .bg('headimg-bg.png');
+
+            img {
+                .wd(106,106);
+                border-radius: 50%;
+            }
+        }
+
+        .layer-name {
+           .pc();
+            top: 80/@rem;
+            color: #fff;
+
+            span {
+                color: #faeb53;
+            }
+        }
+
+        .layer-title {
+            .pc();
+            top: 130/@rem;
+            .wd(440,49);
+            .bg('layer-title.png');
+        }
+
+        .layer-money {
+            position: absolute;
+            top: 225/@rem;
+            right: 220/@rem;
+
+            .point {
+                .coin-num(28, 890);
+            }
+            
+            .coin-num0 {
+                .coin-num(82, 8)
+            }
+            .coin-num1 {
+                .coin-num(36, 108)
+            }
+            .coin-num2 {
+                .coin-num(78, 155)
+            }
+            .coin-num3 {
+                .coin-num(72, 246)
+            }
+            .coin-num4 {
+                .coin-num(82, 330)
+            }
+            .coin-num5 {
+                .coin-num(74, 429)
+            }
+            .coin-num6 {
+                .coin-num(82, 518)
+            }
+            .coin-num7 {
+                .coin-num(75, 611)
+            }
+            .coin-num8 {
+                .coin-num(82, 699)
+            }
+            .coin-num9 {
+                .coin-num(82, 792)
+            }
+        }
+
+        .layer-intro {
+            .pc();
+            top: 350/@rem;
+            white-space: nowrap;
+            color: #faeb53;
+        }
+
+        .layer-btn {
+            .pc();
+            top: 380/@rem;
+            .wd(300,3000/10);
+            .bg('layer-btn-1.png');
+            background-size: 300/@rem 3000/@rem;
+            animation: layerbtn steps(9) .8s infinite;
+        }
+    }
+
+    @keyframes layerbtn {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 0 -3000/10*9/@rem;
+        }
+    }
+}

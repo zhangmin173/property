@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%= require('html-loader!../../../common/layout/_header.html') %>
+    <% if (htmlWebpackPlugin.files.favicon) { %>
+      <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+      <% } %>
+        <title>添加 -- 地址管理</title>
+        <% if (htmlWebpackPlugin.files.css.length) { %>
+          <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+          <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+          <% } %>
+            <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+            <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+            <script type="text/javascript" src="http://map.qq.com/api/js?v=2.exp"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="app-nav">
+      <div class="app-nav-title">添加地址</div>
+      <div class="app-nav-right iconfont"></div>
+    </div>
+    <div class="app-body">
+      <div id="input-3" class="input">
+        <div class="input-label">联系人：</div>
+        <div class="input-enter">
+          <input type="text" placeholder="请输入您的姓名">
+        </div>
+      </div>
+      <div id="input-4" class="input">
+        <div class="input-label">联系方式：</div>
+        <div class="input-enter">
+          <input type="tel" placeholder="请输入您的手机号">
+        </div>
+      </div>
+      <div id="input-1" class="input">
+        <div class="input-label">地址：</div>
+        <div class="input-enter">
+          <input itype="text" placeholder="请选择地址" value="" readonly>
+        </div>
+        <div class="input-right iconfont">&#xe6f8;</div>
+      </div>
+      <div id="input-2" class="input">
+        <div class="input-label">门牌号：</div>
+        <div class="input-enter">
+          <input type="text" placeholder="例：1号楼101室">
+        </div>
+      </div>
+    </div>
+    <div class="app-btns">
+        <button id="btn" class="btn btn-default">添加</button>
+    </div>
+  </div>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+
+</html>

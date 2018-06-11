@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%= require('html-loader!../../../common/layout/_header.html') %>
+        <% if (htmlWebpackPlugin.files.favicon) { %>
+            <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+            <% } %>
+                <title>绑定</title>
+                <% if (htmlWebpackPlugin.files.css.length) { %>
+                    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+                    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+                    <% } %>
+                        <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="openid" class="openid"></div>
+        <a href="../login/index.html" class="btn btn-default">去登陆</a>
+    </div>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+
+</html>

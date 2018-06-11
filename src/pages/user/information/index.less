@@ -1,0 +1,39 @@
+@import '../../../common/css/_var.less';
+
+#app {
+  position: relative;
+  height: 100%;
+
+  .app-nav-right {
+    font-size: @fz;
+    background-color: @gray;
+    width: 100/@rem;
+    border-radius: 10/@rem;
+    color: @black;
+  }
+
+  .page-body {
+    margin-top: @g;
+  }
+
+  .input {
+    display: none;
+    padding: 0 @g;
+  }
+
+  .input-right {
+    cursor: pointer;
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .page-btns {
+    margin-top: @g * 10;
+    text-align: center;
+  }
+}
+
+
+

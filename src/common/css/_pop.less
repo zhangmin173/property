@@ -1,0 +1,28 @@
+.pop {
+    position: fixed;
+    width: 700/@rem;
+    left: 50%;
+    top: 0;
+    margin-left: -700/2/@rem;
+  
+    .pop-body {
+      padding: @g;
+      background-color: @gray;    
+      
+      font-size: @fz-min;
+      border-radius: 10/@rem;
+  
+      &.show {
+        display: block;
+      }
+  
+      &.error {
+        background-color: @c2;
+        color: #fff;
+      }
+      &.success {
+        background-color: @c1;
+        color: #fff;
+      }
+    }
+}

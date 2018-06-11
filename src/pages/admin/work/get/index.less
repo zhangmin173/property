@@ -1,0 +1,244 @@
+@import '../../../../common/css/_var.less';
+
+#app {
+  position: relative;
+  height: 100%;
+
+  .tabs-components {
+
+    .tabs-bar-wrap {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+
+    .tabs-content-wrap {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 120/@rem;
+    }
+
+    .tab-content {
+      height: 1100/@rem;
+  
+      ul {
+        padding: 0 30/@rem;
+        margin: 0;   
+      }
+  
+      li {
+        background-color: #fff;
+        margin-bottom: 92/@rem;
+      }
+    }
+  }
+
+  .panel {
+    position: relative;
+    box-sizing: border-box;
+    padding: 20/@rem 20/@rem 80/@rem;
+    box-shadow: 0 2/@rem 12/@rem 0 rgba(116,116,116,0.20);
+    border-radius: 10/@rem;
+
+    .ac {
+      padding: 0 120/@rem 0 40/@rem;
+      box-sizing: border-box;
+      position: absolute;
+      left: 50%;
+      bottom: -52/@rem;
+      transform: translate(-50%);
+      height: 104/@rem;
+      min-width: 208/@rem;
+      line-height: 104/@rem;
+      background-color: rgba(239, 82, 52, .7);
+      border-radius: 100/@rem;
+      color: #fff;
+      font-size: 32/@rem;
+      text-decoration: none;
+
+      .icon-box {
+        position: absolute;
+        right: 8/@rem;
+        top: 8/@rem; 
+        .wd(88,88);
+        border-radius: 50%;
+        background-color: rgba(239, 82, 52, 1);
+        border: 1/@rem solid #EF5234;
+        text-align: center;
+
+        .icon {
+          margin: 20/@rem auto;
+        }
+      }
+
+    }
+
+    .user {
+      position: relative;
+      
+      .headimg {
+        .wd(56,56);
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: 1/@rem solid #eee;
+        border-radius: 50%;
+      }
+
+      .name {
+        position: absolute;
+        left: 70/@rem;
+        top: 15/@rem;
+        font-size: 30/@rem;
+        color: #303133;
+      }
+
+      .time {
+        position: absolute;
+        right: 0;
+        top: 15/@rem;
+        font-size: 28/@rem;
+        color: #909399;
+      }
+    }
+
+    .imgs {
+      overflow: hidden;
+      margin-bottom: @g;
+
+      .img {
+        float: left;
+        .wd(200,200);
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        &:not(:last-child) {
+          margin-right: 25/@rem;
+        }
+      }
+    }
+
+    .item {
+      position: relative;
+      margin: @g 0 @g/2;
+
+      .icon {
+        display: inline-block;
+        margin-right: @g;
+      }
+
+      .label {
+        display: inline-block;
+      }
+
+      &.type {
+        height: 40/@rem;
+      }
+
+      .type-label {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 5/@rem 10/@rem;
+        border-radius: 6/@rem;
+        background-color: @c1;
+        color: #fff;
+        font-size: 24/@rem;
+      }
+
+      .address {
+        display: inline-block;
+        font-size: 32/@rem;
+        color: @black;
+        font-weight: bold;
+      }
+
+      .icon-luyin {
+        position: absolute;
+        bottom: 15/@rem;
+      }
+
+      .yuyin {
+        position: relative;
+        box-sizing: border-box;
+        width: 200/@rem;
+        height: 72/@rem;
+        margin-left: 60/@rem;
+        line-height: 72/@rem;
+        border: 1/@rem solid #BCBEC1;
+        border-radius: 6/@rem;
+        font-size: 28/@rem;
+        color: @black;
+        letter-spacing: 0;
+
+        .icon-yuyin {
+          position: absolute;
+          left: 24/@rem;
+          top: 20/@rem;
+        }
+
+        .num {
+          margin-left: 56/@rem;
+        }
+      }
+
+      .icon-beizhu {
+        position: absolute;
+        top: 0;
+      }
+
+      .beizhu {
+        width: 589/@rem;
+        margin-left: 60/@rem;
+        font-size: 30/@rem;
+        line-height: 48/@rem;
+        color: @black;
+        .regular();
+      }
+      
+    }
+
+    .other {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 30/@rem;
+      background: rgba(238,238,238,0.20);
+      border: 1/@rem solid #EEEEEE;
+      border-radius: 10/@rem;
+
+      .label {
+        margin-bottom: 15/@rem;
+        font-size: 26/@rem;
+        color: #909399;
+        letter-spacing: 0;
+        .regular();
+      }
+
+      .name {
+        font-size: 30/@rem;
+        color: #606266;
+        letter-spacing: 0;
+      }
+
+      .worker {
+        display: inline-block;
+      }
+      
+      .mobile {
+        float: right;
+      }
+
+      .time {
+        margin-top: 30/@rem;
+      }
+
+      .beizhu {
+        margin-top: 30/@rem;
+      }
+    }
+  }
+}
+
+
+

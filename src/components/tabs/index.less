@@ -1,0 +1,44 @@
+@import '../../common/css/_var';
+
+.tabs-components {
+    overflow: hidden;
+
+    .tabs-bar-wrap {
+      height: 98/@rem;
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .tab-bar {
+      float: left;
+      box-sizing: border-box;      
+      text-align: center;
+      height: 98/@rem;
+      line-height: 98/@rem;
+      cursor: pointer;
+
+      &.active {
+        transition: border-bottom 1s;
+        color: @default;
+        border-bottom: 2/@rem solid @default;
+      }
+    }
+
+    .tabs-bar-animation {
+      overflow-x: auto;
+    }
+
+    .tabs-content-wrap {
+      box-sizing: border-box;
+      //padding: @g;
+
+      .tab-content {
+        box-sizing: border-box;        
+        float: left;
+      }
+    }
+
+    .tabs-content-animation {
+      box-sizing: border-box;
+    }
+}

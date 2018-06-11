@@ -1,0 +1,53 @@
+@rem: 200rem;
+@g: 20/@rem;
+@default: #EF5234;
+@gray: #eee;
+@black: #606266;
+@lightBlack: #909399;
+@c1: #74D995;
+@c2: #EF5234;
+@fz-min: 26/@rem;
+@fz: 28/@rem;
+@fz-32: 32/@rem;
+@fz-max: 36/@rem;
+
+.wd(@w,@h) {
+  width: @w/@rem;
+  height: @h/@rem;
+}
+
+.bg(@img) {
+  background-image: url('@{img}');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.ps(@top,@left) {
+  position: absolute;
+  left: @left/@rem;
+  top: @top/@rem;
+}
+.pr(@top,@right) {
+  position: absolute;
+  right: @right/@rem;
+  top: @top/@rem;
+}
+
+.text-line {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis
+}
+
+.line(@w) {
+  border: @w/@rem solid @gray;
+}
+.line-b(@w) {
+  border-bottom: @w/@rem solid @gray;
+}
+
+.gradient1() {
+  background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+}
+
+.regular() {
+  font-weight: 100;
+}

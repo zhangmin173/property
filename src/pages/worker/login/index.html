@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%= require('html-loader!../../../common/layout/_header.html') %>
+        <% if (htmlWebpackPlugin.files.favicon) { %>
+            <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+            <% } %>
+                <title>登陆</title>
+                <% if (htmlWebpackPlugin.files.css.length) { %>
+                    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+                    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+                    <% } %>
+                        <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="login">
+            <h1 class="title">请登陆</h1>
+            <div class="input">
+                <div class="input-enter">
+                    <input id="input-1" type="tel" placeholder="请输入账号">
+                </div>
+            </div>
+            <div class="input">
+                <div class="input-enter">
+                    <input id="input-2" type="password" placeholder="请输入密码">
+                </div>
+            </div>
+            <div id="btn" class="btn btn-default">登陆</div>
+        </div>
+    </div>
+    <script id="tpl-work-1" type="text/html">
+    {{each data as item i}}
+    <li class="panel">
+      {{if item.work_imgs.length}}
+      <div class="imgs">
+        {{each item.work_imgs as img}}
+        <div class="img" style="background-image:url({{img}})" data-url="{{img}}"></div>
+        {{/each}}
+      </div>
+      {{/if}}
+      <div class="item">
+        <div class="label time">{{item.create_time}}</div>
+        <div class="type">{{item.work_type_1 + '-' + item.work_type_2}}</div>
+      </div>
+      <div class="item">
+        <div class="icon icon-address"></div>
+        <div class="label address">{{item.work_address}}</div>
+      </div>
+      {{if item.work_voice}}
+      <div class="item">
+        <div class="icon icon-luyin"></div>
+        <div class="label yuyin" data-voice="{{item.work_voice}}">
+          <span class="icon icon-yuyin"></span>
+          <span class="num">0</span>
+          <span class="uinit">''</span>
+        </div>
+      </div>
+      {{/if}}
+      {{if item.work_worker_note}}
+      <div class="item">
+        <div class="icon icon-beizhu"></div>
+        <div class="label beizhu">{{item.work_worker_note}}</div>
+      </div>
+      {{/if}}
+      {{if item.work_status !== 'to_send'}}
+      <div class="other">
+        <div class="worker">
+          <div class="label">接单人</div>
+          <div class="name">{{item.work_worker_name}}</div>
+        </div>
+        <div class="mobile">
+          <div class="label">手机号</div>
+          <div class="name">{{item.work_worker_phone}}</div>
+        </div>
+        <div class="time">
+          <div class="label">完成时间</div>
+          <div class="name">{{item.work_over_time}}</div>
+        </div>
+        <div class="beizhu">
+          <div class="label">处理备注</div>
+          <div class="name">{{item.work_worker_note}}</div>
+        </div>
+        </div>
+      </div>
+      {{/if}}
+    </li>
+    {{/each}}
+  </script>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+
+</html>

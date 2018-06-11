@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('html-loader!../../../common/layout/_header.html') %>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <title>个人中心</title>
+  <% if (htmlWebpackPlugin.files.css.length) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+  <% } %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>  
+</head>
+<body>
+  <div id="app">
+		<div class="user-list">
+      <a href="javascript:;" class="user-list-item user-headimg">
+        <div class="list-item-label">头像</div>
+        <div class="list-item-body headimg"></div>
+        <input class="upload" id="uploadBtn" type="file" name="postedFile"/>
+      </a>
+      <a href="../information/index.html?action=nickname"  class="user-list-item">
+        <div class="list-item-label">昵称</div>
+        <div class="list-item-body nickname"></div>
+      </a>
+      <a href="../information/index.html?action=mobile"  class="user-list-item">
+        <div class="list-item-label">手机号</div>
+        <div class="list-item-body mobile"></div>
+      </a>
+		</div>
+    <div class="btn-list">
+      <a href="../../address/list/index.html" class="btn-list-item">
+        <div class="list-item-label">我的地址</div>
+      </a>
+      <a href="../../work/add/index.html" class="btn-list-item">
+        <div class="list-item-label">我要保修</div>
+      </a>
+      <a href="../../message/list/index.html" class="btn-list-item">
+        <div class="list-item-label">我的留言</div>
+      </a>
+    </div>
+  </div>
+  <script type="text/javascript" src="//admin.nextdog.cc/Projects/WuYe/dist/libs/jquery.uploadifive.min.js"></script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>

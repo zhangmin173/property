@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('html-loader!../../common/layout/_header.html') %>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <title>页面导航</title>
+  <% if (htmlWebpackPlugin.files.css.length) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+  <% } %>
+  <style>
+      li {
+          margin-bottom: 10px;
+          font-size: 16px;
+      }
+  </style>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>  
+</head>
+<body>
+    <h1>用户端</h1>
+    <ul>
+        <li><a href="../user/center/index.html">个人中心</a></li>
+        <li><a href="../address/list/index.html">我的地址</a></li>
+        <li><a href="../address/add/index.html">添加地址</a></li>
+        <li><a href="../work/list/index.html">我的保修</a></li>
+        <li><a href="../work/add/index.html">我要保修</a></li>
+        <li><a href="../message/list/index.html">我的留言</a></li>
+        <li><a href="../message/add/index.html">我要留言</a></li>
+    </ul>
+    <h1>主管端</h1>
+    <ul>
+        <li><a href="../admin/wx/index.html">邀请码</a></li>
+        <li><a href="../admin/login/index.html">登陆</a></li>
+        <li><a href="../admin/work/list/index.html">订单管理</a></li>
+        <li><a href="../admin/message/list/index.html">留言管理</a></li>
+    </ul>
+    <h1>维修端</h1>
+    <ul>
+        <li><a href="../worker/wx/index.html">邀请码</a></li>
+        <li><a href="../worker/login/index.html">登陆</a></li>
+        <li><a href="../worker/work/list/index.html">订单管理</a></li>
+    </ul>
+</body>
+</html>
