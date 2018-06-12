@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-11 22:34:58
+ * @Last Modified time: 2018-06-12 21:40:40
  */
 
 import './index.less';
@@ -79,12 +79,14 @@ $(function () {
             //     }
             $('.upload').on('click', () => {
                 Wechat.uploadImage(serverId => {
+                    console.log('uploadImage: ' + serverId);
                     Toolkit.fetch({
                         url: '/Work/uploadImg',
                         data: {
                             img_id: serverId
                         },
                         success: res => {
+                            console.log('uploadImage: ' + res);
                             if (res.success) {
                                 this.uploadSuccess(res.data);
                             }
