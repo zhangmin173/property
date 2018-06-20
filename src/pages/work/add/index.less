@@ -134,6 +134,7 @@
     }
 
     .four {
+      position: relative;
       .luyin,.yuyin {
         padding: 17/@rem 24/@rem;
         box-sizing: border-box;
@@ -171,6 +172,32 @@
           display: inline-block;
           margin-right: @g/2;
         }
+
+        &.playing {
+          animation: playing 1s infinite;
+        }
+      }
+      .cancel {
+        position: absolute;
+        top: 70/@rem;
+        right: 18/@rem;
+        .wd(100,50);
+        text-align: center;
+        line-height: 50/@rem;
+        background-color: @c1;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 30/@rem;
+        display: none;
+      }
+    }
+
+    @keyframes playing {
+      0% {
+        border-color: #BCBEC1;
+      }
+      100% {
+        border-color: @c1;
       }
     }
     

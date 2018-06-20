@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-12 21:40:40
+ * @Last Modified time: 2018-06-20 08:53:50
  */
 
 import './index.less';
@@ -188,6 +188,7 @@ $(function () {
             // 开始录音
             this.$luyin = $('#luyin');
             this.$yuyin = $('#yuyin');
+            this.$cancel = $('#cancel');
             this.localId = null;
             this.isLuyin = false;
             let luyinTime = 0;
@@ -219,8 +220,25 @@ $(function () {
                 }
             })
             // 点击播放
+            let isPlay = false;
             this.$yuyin.on('click', () => {
-                Wechat.playVoice(this.localId)
+                if (!isPlay) {
+                    isPlay = true;
+                    this.$yuyin.addClass('playing');
+                    Wechat.playVoice(this.localId);
+                } else {
+                    isPlay = false;
+                    this.$yuyin.removeClass('playing');
+                    Wechat.stopVoice(this.localId);
+                }
+                
+            })
+            // 重新录音
+            this.$cancel.on('click', () => {
+                this.$yuyin.hide();
+                this.$cancel.hide();
+                this.$luyin.find('.label').text('请点击说话');
+                this.$luyin.show();
             })
             // 提交
             let btnDisabled = false;
@@ -274,6 +292,7 @@ $(function () {
             }
             this.$yuyin.css('width', luyinTime + '%');
             this.$yuyin.show();
+            this.$cancel.show();
         }
         uploadSuccess(data) {
             const imgpath = data.attach_path;
