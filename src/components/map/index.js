@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-05-16 21:34:41 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-05-21 09:08:11
+ * @Last Modified time: 2018-06-23 13:33:54
  */
 
 import './index.less';
@@ -38,7 +38,7 @@ class Map extends EventEmitter {
                 map: this.map,
                 content: item.title,
                 id: item.id,
-                animation: qq.maps.MarkerAnimation.BOUNCE
+                //animation: qq.maps.MarkerAnimation.BOUNCE
             });
             // 添加标注点击事件
             qq.maps.event.addListener(marker, 'click', () => {
