@@ -2,13 +2,13 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-20 08:53:50
+ * @Last Modified time: 2018-07-02 08:50:48
  */
 
 import './index.less';
 import moonpng from '../../../common/images/moon.png';
 
-import Pop from '../../../components/pop';
+import Pop from '../../../components/Pop';
 import Toolkit from '../../../components/toolkit';
 import BetterPicker from 'better-picker';
 import Formatdate from '../../../components/formatDate';
@@ -64,19 +64,6 @@ $(function () {
         }
         event() {
             // 初始化上传
-            // Toolkit.uploadInit('uploadBtn', res => {
-            //     if (res.success) {
-            //         this.uploadSuccess(res.data);
-            //     }
-            // }, 'property', 'work');
-
-            // const u = navigator.userAgent;
-            // const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
-            // window.setTimeout(() => {
-            //     if (isAndroid) {
-            //         $("#uploadifive-uploadBtn").find("input[type='file']").attr("accept","image/*");
-            //         //$("#uploadifive-uploadBtn").find("input[type='file']").attr("capture","camera");
-            //     }
             $('.upload').on('click', () => {
                 Wechat.uploadImage(serverId => {
                     console.log('uploadImage: ' + serverId);
@@ -327,7 +314,11 @@ $(function () {
             } else {
                 Wechat.getLocation(res => {
                     this.getProjectsNear(res.lat, res.lng, res => {
-                        this.projectData = res.data;
+                        this.projectData = res.data || [];
+                        if (this.projectData && this.projectData.length === 0) {
+                            Pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言');
+                            return false;
+                        }
                         const data = this.initProjectData(res.data);
                         this.map = new Map(null, {
                             data: data,
@@ -347,7 +338,12 @@ $(function () {
             $('#address').show();
             // 打开地图
             this.$input1.on('click', () => {
-                this.map.show();
+                if (this.map) {
+                    this.map.show(); 
+                } else {
+                    Pop.show('error', '初始化中，稍后再试').hide();
+                }
+                
             })
 
             // 保存
@@ -433,12 +429,13 @@ $(function () {
                     if (res.success) {
                         cb && cb(res);
                     } else {
-                        pop.show('error', res.msg).hide();
+                        Pop.show('error', res.msg).hide();
                     }
                 }
             })
         }
         saveAddress(data, cb, btnSaveAddrDisabled) {
+            Pop.show('success', '提交中，请等待').hide();
             Toolkit.fetch({
                 url: '/Address/createAddress',
                 data,
