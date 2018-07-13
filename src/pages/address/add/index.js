@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-23 13:27:31
+ * @Last Modified time: 2018-07-13 21:27:53
  */
 
 import './index.less';
@@ -52,7 +52,11 @@ $(function () {
         initAddressBox() {
             if (this.debug) {
                 this.getProjectsNear(30.24, 120.34, res => {
-                    this.projectData = res.data;
+                    this.projectData = res.data || [];
+                    if (this.projectData && this.projectData.length === 0) {
+                        pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言');
+                        return false;
+                    }
                     const data = this.initProjectData(res.data);
                     this.map = new Map(null, {
                         data: data,
@@ -68,9 +72,12 @@ $(function () {
                 })
             } else {
                 Wechat.getLocation(res => {
-                    console.log(res);
                     this.getProjectsNear(res.lat, res.lng, res => {
-                        this.projectData = res.data;
+                        this.projectData = res.data || [];
+                        if (this.projectData && this.projectData.length === 0) {
+                            pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言');
+                            return false;
+                        }
                         const data = this.initProjectData(res.data);
                         this.map = new Map(null, {
                             data: data,
