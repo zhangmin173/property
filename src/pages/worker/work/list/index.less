@@ -275,6 +275,19 @@
         .num {
           margin-left: 56/@rem;
         }
+
+        &.playing {
+          animation: playing 1s infinite;
+        }
+
+        @keyframes playing {
+          0% {
+            border-color: #BCBEC1;
+          }
+          100% {
+            border-color: @c1;
+          }
+        }
       }
 
       .icon-beizhu {

@@ -176,6 +176,15 @@
         &.playing {
           animation: playing 1s infinite;
         }
+
+        @keyframes playing {
+          0% {
+            border-color: #BCBEC1;
+          }
+          100% {
+            border-color: @c1;
+          }
+        }
       }
       .cancel {
         position: absolute;
@@ -189,15 +198,6 @@
         border-radius: 5px;
         font-size: 30/@rem;
         display: none;
-      }
-    }
-
-    @keyframes playing {
-      0% {
-        border-color: #BCBEC1;
-      }
-      100% {
-        border-color: @c1;
       }
     }
     

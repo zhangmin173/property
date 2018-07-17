@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-17 20:41:47
+ * @Last Modified time: 2018-07-17 22:23:54
  */
 
 import './index.less';
@@ -102,7 +102,7 @@ $(function () {
                     return false;
                 }
                 btnSaveAddrDisabled = true;
-                this.formdata.address_txt_1 = this.$input1.find('input').val();
+                this.formdata.address_txt_1 = this.$input1.find('.input-enter').text();
                 this.formdata.address_txt_2 = this.$input2.find('input').val();
                 this.formdata.address_user_name = this.$input3.find('input').val();
                 this.formdata.address_phone = this.$input4.find('input').val();
@@ -117,7 +117,7 @@ $(function () {
                 this.map.hide();
                 this.selectProjectData = this.getProjectById(marker.id);
                 if (this.selectProjectData) {
-                    this.$input1.find('input').val(this.selectProjectData.project_address);
+                    this.$input1.find('.input-enter').text(this.selectProjectData.project_address);
                 }
             }
         }

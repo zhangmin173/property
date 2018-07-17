@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-05-16 21:34:41 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-23 13:33:54
+ * @Last Modified time: 2018-07-17 23:14:20
  */
 
 import './index.less';
@@ -16,35 +16,29 @@ class Map extends EventEmitter {
         this.id = +new Date();
         this.$wrapper = wrapper || $('body');
         this.markers = this.opt.data;
+        console.log(this.markers);
         this.init();
     }
     init() {
+        const _this = this;
         this.$wrapper.append(this._createDom());
-        this.map = new qq.maps.Map(document.getElementById(this.id), {
-            center: new qq.maps.LatLng(this.opt.lat, this.opt.lng),
-            zoom: this.opt.zoom || 13
-        });
-        this._createMarker(this.markers);
+        $('#' + this.id).on('click', '.map-item', function() {
+            const index = $(this).data('index');
+            _this.emit('map-click', _this.markers[index]);
+        })
     }
     _createDom() {
-        return `<div id="${this.id}" class="map-components"></div>`;
-    }
-    _createMarker(markers) {
-        for (let index = 0; index < markers.length; index++) {
-            const item = markers[index];
-            // 添加标注
-            const marker = new qq.maps.Marker({
-                position: new qq.maps.LatLng(item.lat, item.lng),
-                map: this.map,
-                content: item.title,
-                id: item.id,
-                //animation: qq.maps.MarkerAnimation.BOUNCE
-            });
-            // 添加标注点击事件
-            qq.maps.event.addListener(marker, 'click', () => {
-                this.emit('map-click',marker);
-            });
+        let htmlStr = `<div id="${this.id}" class="map-components">`
+        for (let index = 0; index < this.markers.length; index++) {
+            const item = this.markers[index];
+            htmlStr += `<div class="map-item" data-index="${index}">
+                <div class="map-icon icon-address"></div>
+                <div class="map-name">${item.title}</div>
+                <div class="map-info">${item.addr}</div>
+            </div>`;
         }
+        htmlStr += '</div>';
+        return htmlStr;
     }
     show() {
         $('#' + this.id).show();

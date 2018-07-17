@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-11 22:24:59
+ * @Last Modified time: 2018-07-17 21:31:58
  */
 
 /**
@@ -103,9 +103,14 @@ const Wechat = (function () {
                 }
             });
         },
-        playVoice(localId) {
+        playVoice(localId, cb) {
             wx.playVoice({
                 localId
+            });
+            wx.onVoicePlayEnd({
+                success: function (res) {
+                    cb && cb(res.localId);
+                }
             });
         },
         pauseVoice(localId) {

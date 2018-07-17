@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-11 21:48:07
+ * @Last Modified time: 2018-07-17 21:56:43
  */
 
 /**
@@ -226,9 +226,13 @@ const Toolkit = (function () {
       }
       const player = document.getElementById("player");
       return {
-        play: function(link) {
+        play: function(link, cb) {
           player.src = link;
           player.play();
+          player.addEventListener('ended', function () {  
+            cb && cb();
+            player.removeEventListener('ended', cb);
+          }, false);
         },
         pause: function() {
           player.pause();

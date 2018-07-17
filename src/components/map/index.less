@@ -1,3 +1,5 @@
+@import '../../common/css/_var.less';
+
 .map-components {
     position: absolute;
     left: 0;
@@ -7,4 +9,35 @@
     overflow: hidden;
     display: none;
     z-index: 999999;
+    background-color: #fff;
+
+    .map-item {
+        position: relative;
+        box-sizing: border-box;
+        padding: 20/@rem;
+        height: 120/@rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .map-icon {
+        position: absolute;
+        left: 40/@rem;
+        top: 40/@rem;
+    }
+
+    .map-name {
+        position: absolute;
+        left: 100/@rem;
+        top: 20/@rem;
+        font-size: 32/@rem;
+        font-weight: bold;
+    }
+
+    .map-info {
+        position: absolute;
+        left: 100/@rem;
+        top: 70/@rem;
+        font-size: 26/@rem;
+        color: #222;
+    }
 }

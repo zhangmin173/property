@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-11 21:08:33
+ * @Last Modified time: 2018-07-17 22:49:39
  */
 
 import './index.less';
@@ -11,10 +11,12 @@ import Template from '../../../../../libs/lib-artTemplate/index';
 import Tabsview from '../../../../components/tabsview/index';
 import Toolkit from '../../../../components/toolkit';
 import BetterPicker from 'better-picker';
+import Wechat from '../../../../components/wehcat';
 
 $(function () {
     class Index {
         constructor() {
+            Wechat.config();
             Toolkit.adminLogin(data => {
                 this.init()
             });
@@ -95,15 +97,31 @@ $(function () {
             
             const player = Toolkit.player();
             $('body').on('click', '.yuyin', function() {
-                const link = $(this).data('voice');
-                if ($(this).data('play') === 'playing') {
+                const _this = $(this);
+                const link = _this.data('voice');
+                if (_this.data('play') === 'playing') {
                     player.pause();
-                    $(this).data('play', 'puase');
+                    _this.data('play', 'puase');
                 } else {
-                    player.play(link);
-                    $(this).data('play', 'playing');
+                    player.play(link, () => {
+                        _this.removeClass('playing');
+                        _this.data('play', 'puase');
+                    });
+                    _this.addClass('playing');
+                    _this.data('play', 'playing');
                 }
                 
+            })
+
+            $('body').on('click', '.img', function() {
+                const _this = $(this);
+                const link = _this.data('url');
+                const imgArr = [];
+                _this.parents('.imgs').find('.img').each(function() {
+                    const url = $(this).data('url');
+                    imgArr.push(url);
+                })
+                Wechat.previewImage(imgArr, link);
             })
         }
         paijian(worker) {

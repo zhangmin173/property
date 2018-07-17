@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-17 20:42:06
+ * @Last Modified time: 2018-07-17 22:24:51
  */
 
 import './index.less';
@@ -74,7 +74,7 @@ $(function() {
                 })
             } else {
                 Wechat.getLocation(res => {
-                    this.getProjectsNear(res.lat, res.lng, res => {
+                    this.getProjectsNear(res.lng, res.lat, res => {
                         this.projectData = res.data || [];
                         if (this.projectData.length === 0) {
                             Pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言').hide(2000);
@@ -104,7 +104,7 @@ $(function() {
                     return false;
                 }
                 btnSaveAddrDisabled = true;
-                this.formdata.address_txt_1 = this.$input1.find('input').val();
+                this.formdata.address_txt_1 = this.$input1.find('.input-enter').text();
                 this.formdata.address_txt_2 = this.$input2.find('input').val();
                 this.formdata.address_user_name = this.$input3.find('input').val();
                 this.formdata.address_phone = this.$input4.find('input').val();
@@ -119,7 +119,7 @@ $(function() {
                 this.map.hide();
                 this.selectProjectData = this.getProjectById(marker.id);
                 if (this.selectProjectData) {
-                    this.$input1.find('input').val(this.selectProjectData.project_address);
+                    this.$input1.find('.input-enter').text(this.selectProjectData.project_address);
                 }
             }
         }
@@ -183,7 +183,7 @@ $(function() {
             })
         }
         renderdata(data) {
-            this.$input1.find('input').val(data.address_txt_1);
+            this.$input1.find('.input-enter').text(data.address_txt_1);
             this.$input2.find('input').val(data.address_txt_2);
             this.$input3.find('input').val(data.address_user_name);
             this.$input4.find('input').val(data.address_phone);
