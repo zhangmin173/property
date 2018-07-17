@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-05-16 21:34:41 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-17 23:14:20
+ * @Last Modified time: 2018-07-17 23:23:13
  */
 
 import './index.less';
@@ -26,6 +26,9 @@ class Map extends EventEmitter {
             const index = $(this).data('index');
             _this.emit('map-click', _this.markers[index]);
         })
+        $('#' + this.id).on('click', '.map-close', function() {
+            _this.hide();
+        })
     }
     _createDom() {
         let htmlStr = `<div id="${this.id}" class="map-components">`
@@ -37,6 +40,7 @@ class Map extends EventEmitter {
                 <div class="map-info">${item.addr}</div>
             </div>`;
         }
+        htmlStr += '<div class="map-close">关闭</div>';
         htmlStr += '</div>';
         return htmlStr;
     }

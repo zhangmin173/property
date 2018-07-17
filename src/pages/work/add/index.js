@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-17 21:44:26
+ * @Last Modified time: 2018-07-17 23:18:51
  */
 
 import './index.less';
@@ -415,7 +415,7 @@ $(function () {
                     id: item.project_id,
                     lat: item.address_y,
                     lng: item.address_x,
-                    title: item.title,
+                    title: item.project_name,
                     addr: item.project_address
                 };
                 arr.push(element);
