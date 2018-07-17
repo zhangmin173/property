@@ -2,12 +2,12 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-13 21:27:53
+ * @Last Modified time: 2018-07-17 20:41:47
  */
 
 import './index.less';
 import Toolkit from '../../../components/toolkit';
-import pop from '../../../components/pop';
+import Pop from '../../../components/pop';
 import reg from '../../../components/reg';
 import Map from '../../../components/map/index';
 import Wechat from '../../../components/wehcat';
@@ -45,7 +45,7 @@ $(function () {
                 if (this.map) {
                     this.map.show();
                 } else {
-                    this.initAddressBox()
+                    this.initAddressBox();
                 }
             })
         }
@@ -53,8 +53,8 @@ $(function () {
             if (this.debug) {
                 this.getProjectsNear(30.24, 120.34, res => {
                     this.projectData = res.data || [];
-                    if (this.projectData && this.projectData.length === 0) {
-                        pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言');
+                    if (this.projectData.length === 0) {
+                        Pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言').hide(2000);
                         return false;
                     }
                     const data = this.initProjectData(res.data);
@@ -74,8 +74,8 @@ $(function () {
                 Wechat.getLocation(res => {
                     this.getProjectsNear(res.lat, res.lng, res => {
                         this.projectData = res.data || [];
-                        if (this.projectData && this.projectData.length === 0) {
-                            pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言');
+                        if (this.projectData.length === 0) {
+                            Pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言').hide(2000);
                             return false;
                         }
                         const data = this.initProjectData(res.data);
@@ -157,7 +157,7 @@ $(function () {
                     if (res.success) {
                         cb && cb(res);
                     } else {
-                        pop.show('error', res.msg).hide();
+                        Pop.show('error', res.msg).hide();
                     }
                 }
             })
@@ -170,7 +170,7 @@ $(function () {
                     if (res.success) {
                         window.location.href = '../list/index.html';
                     } else {
-                        pop.show('error', res.msg).hide();
+                        Pop.show('error', res.msg).hide();
                     }
                 }
             })

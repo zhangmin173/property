@@ -2,13 +2,13 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-02 08:50:48
+ * @Last Modified time: 2018-07-17 20:43:44
  */
 
 import './index.less';
 import moonpng from '../../../common/images/moon.png';
 
-import Pop from '../../../components/Pop';
+import Pop from '../../../components/pop';
 import Toolkit from '../../../components/toolkit';
 import BetterPicker from 'better-picker';
 import Formatdate from '../../../components/formatDate';
@@ -263,7 +263,7 @@ $(function () {
             })
 
             // 取消地址选择
-            $('#cancel').on('click', () => {
+            $('#btn-cancel-addr').on('click', () => {
                 $('#address').hide();
             })
         }
@@ -315,8 +315,8 @@ $(function () {
                 Wechat.getLocation(res => {
                     this.getProjectsNear(res.lat, res.lng, res => {
                         this.projectData = res.data || [];
-                        if (this.projectData && this.projectData.length === 0) {
-                            Pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言');
+                        if (this.projectData.length === 0) {
+                            Pop.show('error', '一公里内没有匹配项目，如果情况紧急请给我们留言').hide(2000);
                             return false;
                         }
                         const data = this.initProjectData(res.data);
@@ -331,11 +331,12 @@ $(function () {
                         this.map.on('map-click', marker => {
                             this.markerClickSuccess(marker);
                         })
+                        $('#address').show();
                     })
                 })
             }
 
-            $('#address').show();
+            
             // 打开地图
             this.$input1.on('click', () => {
                 if (this.map) {
