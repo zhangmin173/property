@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: 张敏
- * @Last Modified time: 2018-07-19 22:21:07
+ * @Last Modified time: 2018-07-19 22:34:27
  */
 
 import './index.less';
@@ -46,6 +46,7 @@ $(function() {
                     this.formdata.address_user_id = res.data.address_user_id;
                     this.formdata.address_user_name = res.data.address_user_name;
                     this.formdata.address_phone = res.data.address_phone;
+                    this.selectProjectData = res.data;
                     this.renderdata(this.formdata);
                 });
                 this.events()
@@ -97,8 +98,8 @@ $(function() {
             }
         }
         markerClickSuccess(marker) {
+            this.map.hide();
             if (marker) {
-                this.map.hide();
                 this.selectProjectData = this.getProjectById(marker.id);
                 if (this.selectProjectData) {
                     this.$input1.find('.input-enter').text(this.selectProjectData.project_address);
