@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-17 23:18:26
+ * @Last Modified time: 2018-07-19 21:27:55
  */
 
 import './index.less';
@@ -180,6 +180,10 @@ $(function() {
                 if(window.confirm('确认要删除吗？')) {
                     this.delAddress(this.address_id);
                 }
+            })
+
+            $('#btn').on('click', () => {
+                this.updateAddress(this.formdata);
             })
         }
         renderdata(data) {

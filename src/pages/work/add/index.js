@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-17 23:18:51
+ * @Last Modified time: 2018-07-19 21:23:29
  */
 
 import './index.less';
@@ -259,7 +259,7 @@ $(function () {
                         if (res.success) {
                             window.location.href = '../list/index.html';
                         } else {
-                            Pop.show(res.msg).hide();
+                            Pop.show('error', res.msg).hide();
                         }
                     }
                 })
