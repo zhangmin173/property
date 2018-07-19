@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: 张敏
- * @Last Modified time: 2018-07-19 22:16:50
+ * @Last Modified time: 2018-07-19 22:27:13
  */
 
 import './index.less';
@@ -234,7 +234,8 @@ $(function () {
             let btnDisabled = false;
             const submitBtn = $('#submitBtn');
             submitBtn.on('click', () => {
-                if (btnDisabled) {
+                if (btnDisabled || !this.addressDesc) {
+                    Pop.show('error', '请选择所在地址').hide();
                     return false;
                 }
                 submitBtn.text('提交中...');
@@ -259,7 +260,6 @@ $(function () {
                         if (res.success) {
                             window.location.href = '../list/index.html';
                         } else {
-                            btnDisabled = false;
                             Pop.show('error', res.msg).hide();
                         }
                     }
@@ -546,7 +546,7 @@ $(function () {
         setUserInfo(data) {
             $('.headimg').css('background-image', `url('${data.user_img}')`);
             $('.nickname').text(data.user_name);
-            if (data.mobile) {
+            if (data.user_phone) {
                 $('.mobile').text(Toolkit.mobile2show(data.user_phone));
             } else {
                 $('.mobile').hide();
