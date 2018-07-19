@@ -1,8 +1,8 @@
 /*
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
- * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-19 21:23:29
+ * @Last Modified by: 张敏
+ * @Last Modified time: 2018-07-19 22:16:50
  */
 
 import './index.less';
@@ -234,7 +234,7 @@ $(function () {
             let btnDisabled = false;
             const submitBtn = $('#submitBtn');
             submitBtn.on('click', () => {
-                if (btnDisabled || !this.addressDesc) {
+                if (btnDisabled) {
                     return false;
                 }
                 submitBtn.text('提交中...');
@@ -259,6 +259,7 @@ $(function () {
                         if (res.success) {
                             window.location.href = '../list/index.html';
                         } else {
+                            btnDisabled = false;
                             Pop.show('error', res.msg).hide();
                         }
                     }
