@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-07-21 19:42:20
+ * @Last Modified time: 2018-07-21 20:06:18
  */
 
 import './index.less';
@@ -47,6 +47,25 @@ $(function () {
                 } else {
                     this.initAddressBox();
                 }
+            })
+
+            // 保存
+            this.btnSaveAddrDisabled = false;
+            $('#btn').on('click', () => {
+                if (this.btnSaveAddrDisabled) {
+                    return false;
+                }
+                this.btnSaveAddrDisabled = true;
+                this.formdata.address_txt_1 = this.$input1.find('.input-enter').text();
+                this.formdata.address_txt_2 = this.$input2.find('input').val();
+                this.formdata.address_user_name = this.$input3.find('input').val();
+                this.formdata.address_phone = this.$input4.find('input').val();
+                if (this.selectProjectData) {
+                    this.formdata.address_x = this.selectProjectData.address_x;
+                    this.formdata.address_y = this.selectProjectData.address_y;
+                    this.formdata.project_id = this.selectProjectData.project_id;
+                }
+                this.saveAddress(this.formdata);
             })
         }
         initAddressBox() {
@@ -93,26 +112,6 @@ $(function () {
                     })
                 })
             }
-            
-
-            // 保存
-            let btnSaveAddrDisabled = false;
-            $('#btn').on('click', () => {
-                if (btnSaveAddrDisabled) {
-                    return false;
-                }
-                btnSaveAddrDisabled = true;
-                this.formdata.address_txt_1 = this.$input1.find('.input-enter').text();
-                this.formdata.address_txt_2 = this.$input2.find('input').val();
-                this.formdata.address_user_name = this.$input3.find('input').val();
-                this.formdata.address_phone = this.$input4.find('input').val();
-                if (this.selectProjectData) {
-                    this.formdata.address_x = this.selectProjectData.address_x;
-                    this.formdata.address_y = this.selectProjectData.address_y;
-                    this.formdata.project_id = this.selectProjectData.project_id;
-                }
-                this.saveAddress(this.formdata);
-            })
         }
         markerClickSuccess(marker) {
             if (marker) {
@@ -172,6 +171,7 @@ $(function () {
                     if (res.success) {
                         window.location.href = '../list/index.html';
                     } else {
+                        this.btnSaveAddrDisabled = false;
                         Pop.show('error', res.msg).hide();
                     }
                 }
