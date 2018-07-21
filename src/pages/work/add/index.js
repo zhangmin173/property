@@ -1,8 +1,8 @@
 /*
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
- * @Last Modified by: 张敏
- * @Last Modified time: 2018-07-19 22:27:13
+ * @Last Modified by: Zhang Min
+ * @Last Modified time: 2018-07-21 19:43:53
  */
 
 import './index.less';
@@ -234,8 +234,7 @@ $(function () {
             let btnDisabled = false;
             const submitBtn = $('#submitBtn');
             submitBtn.on('click', () => {
-                if (btnDisabled || !this.addressDesc) {
-                    Pop.show('error', '请选择所在地址').hide();
+                if (btnDisabled) {
                     return false;
                 }
                 submitBtn.text('提交中...');
@@ -243,12 +242,14 @@ $(function () {
                 this.workData.work_imgs = JSON.stringify(this.imgs);
                 this.workData.work_type_1 = this.type1;
                 this.workData.work_type_2 = this.type2;
-                this.workData.work_phone = this.addressDesc.address_phone;
                 this.workData.work_user_name = this.userinfo.user_name;
-                this.workData.work_address = this.addressDesc.address_txt_1 + this.addressDesc.address_txt_2;
-                this.workData.work_address_x = this.addressDesc.address_x;
-                this.workData.work_address_y = this.addressDesc.address_y;
-                this.workData.project_id = this.addressDesc.project_id;
+                if (this.addressDesc) {
+                    this.workData.work_phone = this.addressDesc.address_phone;
+                    this.workData.work_address = this.addressDesc.address_txt_1 + this.addressDesc.address_txt_2;
+                    this.workData.work_address_x = this.addressDesc.address_x;
+                    this.workData.work_address_y = this.addressDesc.address_y;
+                    this.workData.project_id = this.addressDesc.project_id;
+                }
                 this.workData.work_user_note = $('#beizhu').val();
                 console.log(this.workData);
                 Toolkit.fetch({
@@ -362,9 +363,11 @@ $(function () {
                 this.formdata.address_txt_2 = this.$input2.find('input').val();
                 this.formdata.address_user_name = this.$input3.find('input').val();
                 this.formdata.address_phone = this.$input4.find('input').val();
-                this.formdata.address_x = this.selectProjectData.address_x;
-                this.formdata.address_y = this.selectProjectData.address_y;
-                this.formdata.project_id = this.selectProjectData.project_id;
+                if (this.selectProjectData) {
+                    this.formdata.address_x = this.selectProjectData.address_x;
+                    this.formdata.address_y = this.selectProjectData.address_y;
+                    this.formdata.project_id = this.selectProjectData.project_id;
+                }
                 this.saveAddress(this.formdata, res => {
                     if (res.success) {
                         this.addressDesc = res.data;
@@ -440,7 +443,6 @@ $(function () {
             })
         }
         saveAddress(data, cb, btnSaveAddrDisabled) {
-            Pop.show('success', '提交中，请等待').hide();
             Toolkit.fetch({
                 url: '/Address/createAddress',
                 data,
